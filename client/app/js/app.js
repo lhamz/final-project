@@ -134,6 +134,9 @@ $(function() {
                 if (item.Key) {
                     id = item.Key;
                 }
+                $thesisItem.find('.edit').click(function() {
+                    self.router.navigate('edit-thesis-' + id, {trigger: true});
+                });
                 $thesisItem.find('.view').click(function() {
                     self.router.navigate('thesis-' + id, {trigger: true});
                 });
@@ -183,6 +186,9 @@ $(function() {
                         if (item.Key) {
                             id = item.Key;
                         }
+                        $thesisItem.find('.edit').click(function() {
+                            self.router.navigate('edit-thesis-' + id, {trigger: true});
+                        });
                         $thesisItem.find('.view').click(function() {
                             self.router.navigate('thesis-' + id, {trigger: true});
                         });
