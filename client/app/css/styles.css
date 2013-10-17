@@ -5,3 +5,41 @@ body {
 .hidden {
     display: none;
 }
+
+.header {
+	background-color: #222222;
+}
+
+h1, h3, h2 {
+	text-align: center;
+}
+
+h3, span {
+	font-style: italic;
+}
+
+#web-title {
+	color: gray;
+}
+
+#header-content {
+	color: yellow;
+}
+
+.cocz{
+	margin-right: 25%;
+	margin-left: 15%;
+}
+
+.foot{
+	text-align: justify;
+	color: gray;
+  	font-size: 18px;
+    line-height: 45px;
+    margin-left: 5%;
+}
+
+.footing{
+	float: right;
+	margin-right: 5%;
+}

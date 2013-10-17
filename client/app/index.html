@@ -6,7 +6,17 @@
         <link rel="stylesheet" type="text/css" href="css/styles.css">
     </head>
     <body>
-        <div class="navbar navbar-inverse navbar-fixed-top">
+        <div id="fb-root"></div>
+        <div id="fb-root"></div>
+            <div id="fb-root"></div>
+                <script>(function(d, s, id) {
+                  var js, fjs = d.getElementsByTagName(s)[0];
+                  if (d.getElementById(id)) return;
+                  js = d.createElement(s); js.id = id;
+                  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=1424493254430252";
+                  fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));</script>
+        <div class="navbar navbar-inverse navbar-fixed-top header">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -14,17 +24,17 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Thesis Management System</a>
+                    <a class="navbar-brand" href="javascript:void(0)" id="web-title">Thesis Management System</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav menu-crud">
-                        <li class='menu-create item'><a href="javascript:void(0)">Create New</a></li>
-                        <li class='menu-list item'><a href="javascript:void(0)">Show All</a></li>
+                        <li class='menu-create item'  id="header-content"><a href="javascript:void(0)"><i class="glyphicon glyphicon-plus"></i>&nbsp;Create New</a></li>
+                        <li class='menu-list item'  id="header-content"><a href="javascript:void(0)"><i class="glyphicon glyphicon-th-list"></i>&nbsp;Show All</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class='menu-loading'><a href="#">Loading...</a></li>
                         <li class="menu-user dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class='user-email'></span> <b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class='user-email'></span> <b class="glyphicon glyphicon-cog"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#" class='btn-logout'>Logout</a></li>
                                 <li ><a href="#">About</a></li>
@@ -32,10 +42,27 @@
                         </li>
                     </ul>
                     <a href='#' class="btn btn-primary btn-login navbar-btn navbar-right">Log in</a>
+                    <form class="navbar-form navbar-right search" role="search" _lpchecked="1">
+                        <div class="form-group">
+                          <input type="text" class="form-control search_result" placeholder="Search">
+                        </div>
+                      </form>
                     </div>
                 </div>
             </div>
+            <footer class="navbar navbar-inverse navbar-fixed-bottom">
+              <p class="foot" href="">Copyright &copy; 2013 Enriquez & Sarto - All Rights Reserved
+                <span class="footing">
+                    <a href="https://www.yahoo.com/" target="_blank"><img src="images/yahoo.png"></a>
+                    <a href="https://www.google.com/" target="_blank"><img src="images/google.png"></a>
+                    <a href="https://www.facebook.com/" target="_blank"><img src="images/facebook.png"></a>
+                    <a href="https://www.twitter.com/" target="_blank"><img src="images/twitter.png"></a>
+                    <a href="https://www.youtube.com/" target="_blank"><img src="images/youtube.png"></a>
+                </span>
+              </p>
+            </footer>
             <div class='container'>
+
                 <div class='row app-content'>
                 </div>
             </div>
@@ -44,6 +71,8 @@
         <!-- scripts -->
         <!-- =================== -->
         <script src="js/jquery.js"></script>
+        <script src="js/underscore.js"></script>
+        <script src="js/backbone.js"></script>
         <script src="js/handlebars.js"></script>
         <script src="js/bootstrap.js"></script>
         <script src="js/app.js"></script>
@@ -59,6 +88,8 @@
                             <th>Year</th>
                             <th>Title</th>
                             <th></th>
+                            <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody class='thesis-list'>
@@ -67,14 +98,14 @@
             </div>
         </script>
 
-        <script id="tpl-thesis-list-item" type="text/x-handlebars-template">
-            {{#each this}}
-            <tr data-id="{{Id}}">
-                <td>{{this.Year}}</td>
-                <td>{{this.Title}}</td>
-                <td><a href='#' class= 'btn btn-danger'>Edit</a></td>
+        <script class = "title-list" id="tpl-thesis-list-item" type="text/x-handlebars-template">
+            <tr>
+                <td  data-id="{{Id}}">{{Year}}</td>
+                <td  data-id="{{Id}}">{{Title}}</td>
+                <td data-id="{{Id}}"><button class="view btn btn-primary" id="{{_index}}">View</button></td>
+                <td data-id="{{Id}}"><button class="edit btn btn-primary" id="{{_index}}">Edit</button></td>
+                <td data-id="{{Id}}"><button class="delete btn btn-danger" id="{{_index}}">Delete</button></td>
             </tr>
-            {{/each}}
         </script>
 
 
@@ -103,14 +134,32 @@
                         <label for="description-input">Description</label>
                         <textarea id='description-input' name='Description' class="form-control" rows="3">{{Description}}</textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Save</button>
                     {{#if Id}}
-                    <button class="btn btn-default">Delete</button>
+                        <input id='subtitle-input' type="text" style='display:none;' name='Id' value='{{Id}}'>
+                        <button class="btn-cancel btn btn-default">Cancel</button>
                     {{/if}}
+                    <button type="submit" class="btn btn-primary">Save</button>
                 </form>
+            </div>
+        </script>
+
+
+        <script id="tpl-thesis-detail" type="text/x-handlebars-template">
+            <div class="col-lg-8 cocz">
+                <hgroup>
+                    <h2>{{Title}}</h2>
+                    <h4>{{Subtitle}}</h4>
+                </hgroup>
+                <time>{{Year}}</time>
+                <hr>
+                <p>{{Description}}</p>
+                <hr>
+
+                
+                <div class="fb-like" data-href="https://fprojteamtgif.appspot.com" data-width="The pixel width of the plugin" data-height="The pixel height of the plugin" data-colorscheme="light" data-layout="box_count" data-action="like" data-show-faces="true" data-send="false"></div>
+                <div class="fb-comments" data-href="http://fprojteamtgif.appspot.com" data-colorscheme="The color scheme used in the plugin" data-numposts="5" data-width="The pixel width of the plugin"></div>
             </div>
         </script>
 
     </body>
 </html>
-
