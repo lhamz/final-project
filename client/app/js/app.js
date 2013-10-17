@@ -112,8 +112,12 @@ $(function() {
                 var inputs = $('form').serializeArray();
                 for (var i = 0; i < inputs.length; i++) {
                     thesisObject[inputs[i].name] = inputs[i].value;
-                }
+               }
                 self.save(thesisObject);
+                return false;
+            });
+            $('.btn-cancel').click(function(){
+                self.router.navigate('list', {trigger: true});
                 return false;
             });
             self.setEventListeners();

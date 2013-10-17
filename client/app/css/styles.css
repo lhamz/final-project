@@ -7,7 +7,19 @@ body {
 }
 
 .header {
-	background-color: #222222;
+	background-color: #3b5998;
+}
+
+.white{
+	color: white;
+}
+
+.black{
+	color: black;
+}
+
+.white:hover{
+	color: white;
 }
 
 h1, h3, h2 {
@@ -19,27 +31,36 @@ h3, span {
 }
 
 #web-title {
-	color: gray;
+	color: black;
+	font-family: serif;
+	font-size: 15pt;
+	font-weight: bold;
 }
 
 #header-content {
 	color: yellow;
 }
 
-.cocz{
+.lrmargin{
 	margin-right: 25%;
-	margin-left: 15%;
+	margin-left: 20%;
 }
 
 .foot{
 	text-align: justify;
-	color: gray;
+	color: black;
   	font-size: 18px;
     line-height: 45px;
+    font-family: serif;
+    font-weight: bold;
     margin-left: 5%;
 }
 
 .footing{
 	float: right;
 	margin-right: 5%;
+}
+
+.leftmargin{
+	margin-left: 7px;
 }

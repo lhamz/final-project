@@ -1,21 +1,12 @@
 <!doctype html>
 <html>
     <head>
-        <title>Project Title</title>
+        <title>Academic Thesis System</title>
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="css/styles.css">
     </head>
     <body>
         <div id="fb-root"></div>
-        <div id="fb-root"></div>
-            <div id="fb-root"></div>
-                <script>(function(d, s, id) {
-                  var js, fjs = d.getElementsByTagName(s)[0];
-                  if (d.getElementById(id)) return;
-                  js = d.createElement(s); js.id = id;
-                  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=1424493254430252";
-                  fjs.parentNode.insertBefore(js, fjs);
-                }(document, 'script', 'facebook-jssdk'));</script>
         <div class="navbar navbar-inverse navbar-fixed-top header">
             <div class="container">
                 <div class="navbar-header">
@@ -24,7 +15,8 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="javascript:void(0)" id="web-title">Thesis Management System</a>
+                    <a class="navbar-brand" href="javascript:void(0)" id="web-title"><img src="images/pup.png">
+                    Thesis Management System<img class = 'leftmargin' src="images/coe.png"></a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav menu-crud">
@@ -46,10 +38,11 @@
                         <div class="form-group">
                           <input type="text" class="form-control search_result" placeholder="Search">
                         </div>
-                      </form>
-                    </div>
+                          <i class = 'glyphicon glyphicon-search black'></i>
+                    </form>
                 </div>
             </div>
+        </div>
             <footer class="navbar navbar-inverse navbar-fixed-bottom">
               <p class="foot" href="">Copyright &copy; 2013 Enriquez & Sarto - All Rights Reserved
                 <span class="footing">
@@ -77,6 +70,15 @@
         <script src="js/bootstrap.js"></script>
         <script src="js/app.js"></script>
 
+                <script>
+                    (function(d, s, id) {
+                      var js, fjs = d.getElementsByTagName(s)[0];
+                      if (d.getElementById(id)) return;
+                      js = d.createElement(s); js.id = id;
+                      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=1424493254430252";
+                      fjs.parentNode.insertBefore(js, fjs);
+                    }(document, 'script', 'facebook-jssdk'));
+                </script>
 
         <!-- templates -->
         <!-- =================== -->
@@ -87,9 +89,9 @@
                         <tr>
                             <th>Year</th>
                             <th>Title</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
+                            <th>Information</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody class='thesis-list'>
@@ -102,9 +104,9 @@
             <tr>
                 <td  data-id="{{Id}}">{{Year}}</td>
                 <td  data-id="{{Id}}">{{Title}}</td>
-                <td data-id="{{Id}}"><button class="view btn btn-primary" id="{{_index}}">View</button></td>
-                <td data-id="{{Id}}"><button class="edit btn btn-primary" id="{{_index}}">Edit</button></td>
-                <td data-id="{{Id}}"><button class="delete btn btn-danger" id="{{_index}}">Delete</button></td>
+                <td data-id="{{Id}}"><button class="view btn btn-primary black" id="{{_index}}"><span class='glyphicon glyphicon-eye-open'>&nbsp;</span>View</button></td>
+                <td data-id="{{Id}}"><button class="edit btn btn-success black" id="{{_index}}"><span class='glyphicon glyphicon-edit'>&nbsp;</span>Edit</button></td>
+                <td data-id="{{Id}}"><button class="delete btn btn-danger black" id="{{_index}}"><span class='glyphicon glyphicon-trash'>&nbsp;</span>Delete</button></td>
             </tr>
         </script>
 
@@ -145,7 +147,8 @@
 
 
         <script id="tpl-thesis-detail" type="text/x-handlebars-template">
-            <div class="col-lg-8 cocz">
+
+            <div class="col-lg-8 lrmargin">
                 <hgroup>
                     <h2>{{Title}}</h2>
                     <h4>{{Subtitle}}</h4>
